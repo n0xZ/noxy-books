@@ -6,7 +6,7 @@
       "path": "src/tailwind.css",
       "variable": true
     },
-    "color": "zinc",
+    "color": "neutral",
     "prefix": ""
   },
   "alias": {
