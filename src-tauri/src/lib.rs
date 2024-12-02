@@ -2,8 +2,21 @@ use std::env;
 
 use tauri::Manager;
 use tauri_plugin_store::StoreExt;
+
 mod book;
 
+#[tauri::command]
+fn get_default_folder(app_handle: tauri::AppHandle) -> Result<String, String> {
+    let store = app_handle
+        .store("settings.json")
+        .map_err(|e| e.to_string())?;
+
+    if let Some(res) = store.get("default_folder") {
+        return Ok(res.as_str().unwrap_or_default().to_string());
+    }
+
+    Err("Current settings store does not exist".to_string())
+}
 #[tauri::command]
 fn define_base_book_folder(
     dir_path: &str,
