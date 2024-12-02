@@ -42,6 +42,7 @@ pub fn run() {
         .invoke_handler(tauri::generate_handler![
             book::get_books_from_existing_dir,
             define_base_book_folder,
+            book::retrieve_book_by_title,
             get_default_folder
         ])
         .run(tauri::generate_context!())

@@ -27,4 +27,5 @@ tauri-plugin-fs = "2"
 epub = "2.1.2"
 base64 = "0.22.1"
 tauri-plugin-store = "2"
+percent-encoding = "2.3.1"
 
