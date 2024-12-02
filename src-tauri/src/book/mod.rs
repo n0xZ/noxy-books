@@ -18,3 +18,15 @@ pub fn retrieve_books(dir_path: &str) -> Result<Vec<epub::Book>, tauri::Error> {
 
     Ok(books)
 }
+#[tauri::command]
+pub fn get_books_from_existing_dir(app_handle: AppHandle) -> Result<Vec<epub::Book>, tauri::Error> {
+    let store_result = get_default_folder(app_handle.clone());
+    let store_path = match store_result {
+        Ok(path) => path,
+        Err(_) => {
+            return Err(io::Error::new(io::ErrorKind::Other, "Failed to open settings file").into())
+        }
+    };
+    let books = retrieve_books(&store_path);
+    return books;
+}
